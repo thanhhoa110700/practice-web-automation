@@ -8,10 +8,7 @@ const VALID_OTP = '123456';
 const VALID_ALPHABET = `abcdef`;
 const VALID_CHARACTER = '!@#$%^&*()_+';
 const VALID_LESS = '09090';
-// const VALID_OTP_AGAIN = '123456';
 const VALID_OTP_FAIL = '111111';
-// const VALID_VERIFICATION = '000000';
-// const TitleVerifyLoginName = 'Hahalolo!';
 
 describe('TEST ANONYMOUS LOGIN FLOWS', async () => {
     it('should disable login button', async () => {
@@ -44,9 +41,7 @@ describe('TEST ANONYMOUS LOGIN FLOWS', async () => {
         await expect(Hahalolo.titleVerifyLogin).toBeExisting();
     });
     it('should process to verification null', async () => {
-        await Hahalolo.btnContinue();
-        // await expect(Hahalolo.acceptLogin).toBeDisabled();
-        await Hahalolo.btnAccept();
+        await expect(Hahalolo.acceptLogin).toBeDisabled();
         await expect(Hahalolo.titleVerifyLogin).toBeExisting();
     });
     it('should process to verification enter alphabet', async () => {
