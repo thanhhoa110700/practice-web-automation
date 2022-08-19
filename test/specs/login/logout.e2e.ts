@@ -1,9 +1,11 @@
 import Logout from '../../pageobjects/login/logout';
+import Hahalolo from "../../pageobjects/login/hahalolo";
 
 const VALID_ID = 'halome106@skyoi.tk';
 const VALID_PW = 'admin@123';
 const VALID_OTP = '123456';
 const Titleinputnameavt = 'Điềm Tiểu';
+const Titleinputlogout = 'Đăng xuất';
 
 describe('TEST LOG OUT', async () => {
     it('login web', async () => {
@@ -24,7 +26,16 @@ describe('TEST LOG OUT', async () => {
         await Logout.clickAvt();
         await expect(Logout.titleVerifyAvt).toHaveText(Titleinputnameavt);
         await Logout.btnLogOut();
+        await expect(Logout.logOut).not.toBeDisabled();
+        await expect(Logout.titleVerifyLogout).toBeExisting();
         await Logout.cancelLogout();
+    });
+    it('log out close ', async () => {
+        await Logout.clickAvt();
+        await expect(Logout.titleVerifyAvt).toHaveText(Titleinputnameavt);
+        await Logout.btnLogOut();
+        await expect(Logout.titleVerifyLogout).toBeExisting();
+        await Logout.close();
     });
     it('log out true ', async () => {
         await Logout.clickAvt();

@@ -34,8 +34,17 @@ class Logout extends Page {
     get logOutCancel() {
         return $('#modal-button-cancel');
     }
+    get logOutClose() {
+        return $('#modal-wrapper-button-close');
+    }
     get titleVerifyAvt() {
         return $('#auth-user-content-display-name');
+    }
+    get titleVerifyLogout() {
+        return $('#modal-header-title');
+    }
+    async close() {
+        return this.logOutClose.click();
     }
     async cancelLogout() {
         return this.logOutCancel.click();

@@ -1,5 +1,5 @@
 exports.config = {
-    specs: ['./test/specs/login/*.ts'],
+    specs: ['./test/specs/login/logout.e2e.ts'],
     exclude: [],
     maxInstances: 10,
     capabilities: [

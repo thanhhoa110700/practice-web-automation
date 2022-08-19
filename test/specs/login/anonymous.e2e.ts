@@ -15,8 +15,9 @@ describe('TEST ANONYMOUS LOGIN FLOWS', async () => {
         await Anonymous.startAnonymous();
     });
     it('should process to verification step', async () => {
-        await Anonymous.StartLogin();
         await expect(Anonymous.titleVerifyLogin).toBeExisting();
+        await Anonymous.StartLogin();
+        // await expect(Anonymous.titleVerifyLogin).toBeExisting();
     });
 
     it('should disable login button start ', async () => {
