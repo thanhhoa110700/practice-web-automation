@@ -1,11 +1,9 @@
 import Logout from '../../pageobjects/login/logout';
-import Hahalolo from "../../pageobjects/login/hahalolo";
 
 const VALID_ID = 'halome106@skyoi.tk';
 const VALID_PW = 'admin@123';
 const VALID_OTP = '123456';
 const Titleinputnameavt = 'Điềm Tiểu';
-const Titleinputlogout = 'Đăng xuất';
 
 describe('TEST LOG OUT', async () => {
     it('login web', async () => {
