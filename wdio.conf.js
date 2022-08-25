@@ -1,5 +1,5 @@
 exports.config = {
-    specs: ['./test/specs/login/hahalolo.e2e.ts'],
+    specs: ['./test/specs/login/*'],
     exclude: [],
     maxInstances: 10,
     capabilities: [
@@ -14,7 +14,6 @@ exports.config = {
     ],
     logLevel: 'info',
     bail: 0,
-    // baseUrl: 'https://sb.halome.dev/welcome',
     waitforTimeout: 10000,
     connectionRetryTimeout: 120000,
     connectionRetryCount: 3,

@@ -1,73 +1,73 @@
+import { INVALID_FAIL, VALID_OTP, VALID_SUCCESSFUL } from '../../data/login/anonymous';
 import Anonymous from '../../pageobjects/login/anonymous';
 
-const VALID_PHONE_NUMBER = '840327183626';
-const VALID_ALPHABET = `abcdef`;
-const VALID_CHARACTER = '!@#$%^&*()_+';
-const VALID_OTP = '000000';
-const VALID_OTP_FAIL = '111111';
-const VALID_PHONE_LESS = '0909';
-const VALID_NULL = '';
-
 describe('TEST ANONYMOUS LOGIN FLOWS', async () => {
-    it('should disable login button', async () => {
+    before(async () => {
         await Anonymous.open('https://sb.halome.dev/welcome');
-        await expect(Anonymous.btnStartLoginAnonymous).not.toBeDisabled();
-        await Anonymous.startAnonymous();
     });
-    it('should process to verification step', async () => {
-        await expect(Anonymous.titleVerifyLogin).toBeExisting();
+    it('should disable login button', async () => {
+        await expect(Anonymous.BtnStartLoginAnonymous).not.toBeDisabled();
+        await Anonymous.StartAnonymous();
+        await expect(browser).toHaveUrl(Anonymous.getUrl());
+    });
+    it('should open anonymous login page', async () => {
+        await expect(Anonymous.TitleVerifyLogin).toBeExisting();
         await Anonymous.StartLogin();
-        // await expect(Anonymous.titleVerifyLogin).toBeExisting();
     });
 
     it('should disable login button start ', async () => {
         await Anonymous.StartLogin();
-        await expect(Anonymous.btnStart).toBeDisabled();
+        await expect(Anonymous.BtnStart).toBeDisabled();
+    });
+    it('should disable login button after enter space ', async () => {
+        await Anonymous.EnterPhoneNumber(INVALID_FAIL.space);
+        await Anonymous.StartLogin();
+        await expect(Anonymous.BtnStart).not.toBeEnabled();
     });
     it('should disable login button after enter alphabet ', async () => {
-        await Anonymous.enterPhoneNumber(VALID_ALPHABET);
+        await Anonymous.EnterPhoneNumber(INVALID_FAIL.alphabet);
         await Anonymous.StartLogin();
-        await expect(Anonymous.btnStart).not.toBeEnabled();
+        await expect(Anonymous.BtnStart).not.toBeEnabled();
     });
-    it('should disable login button after enter characters ', async () => {
-        await Anonymous.enterPhoneNumber(VALID_CHARACTER);
+    it(' should disable login button after enter special characters ', async () => {
+        await Anonymous.EnterPhoneNumber(INVALID_FAIL.character);
         await Anonymous.StartLogin();
-        await expect(Anonymous.btnStart).not.toBeEnabled();
+        await expect(Anonymous.BtnStart).not.toBeEnabled();
     });
     it('should disable login button phone number length is less than 5 ', async () => {
-        await Anonymous.enterPhoneNumber(VALID_PHONE_LESS);
+        await Anonymous.EnterPhoneNumber(INVALID_FAIL.lengthnumber);
         await Anonymous.StartLogin();
-        await expect(Anonymous.btnStart).not.toBeEnabled();
+        await expect(Anonymous.BtnStart).not.toBeEnabled();
     });
     it('should disable login button phone number null ', async () => {
-        await Anonymous.enterPhoneNumber(VALID_NULL);
+        await Anonymous.EnterPhoneNumber(INVALID_FAIL.null);
         await Anonymous.StartLogin();
-        await expect(Anonymous.btnStart).not.toBeEnabled();
+        await expect(Anonymous.BtnStart).not.toBeEnabled();
     });
     it('should enable login button after enter valid phone number', async () => {
-        await Anonymous.enterPhoneNumber(VALID_PHONE_NUMBER);
-        await expect(Anonymous.btnStart).toBeEnabled();
+        await Anonymous.EnterPhoneNumber(VALID_SUCCESSFUL.phone);
+        await expect(Anonymous.BtnStart).toBeEnabled();
         await Anonymous.StartLogin();
     });
     it('should back welcome page after click cancel button', async () => {
-        await Anonymous.comeBack();
+        await Anonymous.ComeBack();
         await browser.dismissAlert();
-        await expect(Anonymous.titleVerifyLogin).toBeExisting();
+        await expect(Anonymous.TitleVerifyLogin).toBeExisting();
     });
     it('should back welcome page after click ok button ', async () => {
-        await Anonymous.comeBack();
+        await Anonymous.ComeBack();
         await browser.acceptAlert();
-        await expect(Anonymous.titleVerifyLogin).toBeExisting();
+        await expect(Anonymous.TitleVerifyLogin).toBeExisting();
     });
-    it('should process to verification fail', async () => {
-        await Anonymous.enterPhoneNumber(VALID_PHONE_NUMBER);
+    it('Check the existence of the error message', async () => {
+        await Anonymous.EnterPhoneNumber(VALID_SUCCESSFUL.phone);
         await Anonymous.StartLogin();
-        await Anonymous.enterOtp(VALID_OTP_FAIL);
-        await expect(Anonymous.titleVerifyLogin).toBeExisting();
+        await Anonymous.EnterOtp(VALID_OTP.otpfail);
+        await expect(Anonymous.TitleVerifyLogin).toBeExisting();
     });
     it('should process to verification ok', async () => {
         await Anonymous.SendTo();
-        await Anonymous.enterOtp(VALID_OTP);
-        await expect(Anonymous.titleVerifyLogin).toBeExisting();
+        await Anonymous.EnterOtp(VALID_OTP.otp);
+        await expect(Anonymous.TitleVerifyLogin).toBeExisting();
     });
 });

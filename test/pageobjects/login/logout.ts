@@ -1,7 +1,7 @@
 import Page from '../page';
 
 class Logout extends Page {
-    get btnStartLoginHalo() {
+    get BtnStartLoginHalo() {
         return $('#platforms-halo');
     }
     get InputId() {
@@ -10,65 +10,65 @@ class Logout extends Page {
     get InputPass() {
         return $('#password');
     }
-    get btnLogin() {
+    get BtnLogin() {
         return $('.MuiButton-label');
     }
     get Continue() {
         return $('#halo-login-form-button-ok');
     }
-    get inputOtp() {
+    get InputOtp() {
         return $('#phone-verify-form-input-1');
     }
-    get acceptLogin() {
+    get AcceptLogin() {
         return $('#otp-form-need-button-ok');
     }
-    get btnAvt() {
+    get BtnAvt() {
         return $('#auth-user-profile-button');
     }
-    get logOut() {
+    get LogOut() {
         return $('[data-id="auth-user-content-button-logout"]');
     }
-    get logOutOK() {
+    get LogOutOK() {
         return $('#modal-button-ok');
     }
-    get logOutCancel() {
+    get LogOutCancel() {
         return $('#modal-button-cancel');
     }
-    get logOutClose() {
+    get LogOutClose() {
         return $('#modal-wrapper-button-close');
     }
-    get titleVerifyAvt() {
+    get TitleVerifyAvt() {
         return $('#auth-user-content-display-name');
     }
-    get titleVerifyLogout() {
+    get TitleVerifyLogout() {
         return $('#modal-header-title');
     }
-    async close() {
-        return this.logOutClose.click();
+    async Close() {
+        return this.LogOutClose.click();
     }
-    async cancelLogout() {
-        return this.logOutCancel.click();
+    async CancelLogout() {
+        return this.LogOutCancel.click();
     }
-    async btnLogOutOk() {
-        return this.logOutOK.click();
+    async BtnLogOutOk() {
+        return this.LogOutOK.click();
     }
-    async btnLogOut() {
-        return this.logOut.click();
+    async BtnLogOut() {
+        return this.LogOut.click();
     }
-    async clickAvt() {
-        return this.btnAvt.click();
+    async ClickAvt() {
+        return this.BtnAvt.click();
     }
-    async btnAccept() {
-        return this.acceptLogin.click();
+    async BtnAccept() {
+        return this.AcceptLogin.click();
     }
-    async enterOtp(otp: string) {
-        return this.inputOtp.setValue(otp);
+    async EnterOtp(otp: string) {
+        return this.InputOtp.setValue(otp);
     }
-    async btnContinue() {
+    async BtnContinue() {
         return this.Continue.click();
     }
-    async startLoginHalo() {
-        return this.btnStartLoginHalo.click();
+    async StartLoginHalo() {
+        return this.BtnStartLoginHalo.click();
     }
     async InputIdAccount(id: string) {
         return this.InputId.setValue(id);
@@ -77,7 +77,7 @@ class Logout extends Page {
         return this.InputPass.setValue(pw);
     }
     async Login() {
-        return this.btnLogin.click();
+        return this.BtnLogin.click();
     }
 }
 export default new Logout();

@@ -1,44 +1,44 @@
+import { VALID_OTP, VALID_SUCCESSFUL } from '../../data/login/logout';
 import Logout from '../../pageobjects/login/logout';
 
-const VALID_ID = 'halome106@skyoi.tk';
-const VALID_PW = 'admin@123';
-const VALID_OTP = '123456';
-const Titleinputnameavt = 'Điềm Tiểu';
-
-describe('TEST LOG OUT', async () => {
-    it('login web', async () => {
+describe('TEST LOG OUT SUCCESSFUL', async () => {
+    before(async () => {
         await Logout.open('https://sb.halome.dev/welcome');
-        await expect(Logout.btnStartLoginHalo).not.toBeDisabled();
-        await Logout.startLoginHalo();
-    });
-    it('login button ', async () => {
-        await Logout.InputIdAccount(VALID_ID);
-        await Logout.InputPwd(VALID_PW);
+        await expect(Logout.BtnStartLoginHalo).not.toBeDisabled();
+        await Logout.StartLoginHalo();
+        await Logout.InputIdAccount(VALID_SUCCESSFUL.id);
+        await Logout.InputPwd(VALID_SUCCESSFUL.pass);
         await Logout.Login();
-        await Logout.Continue.waitForDisplayed({ timeout: 50000 });
-        await Logout.btnContinue();
-        await Logout.enterOtp(VALID_OTP);
-        await Logout.btnAccept();
+        await Logout.BtnContinue();
+        await Logout.EnterOtp(VALID_OTP.otp);
+        await Logout.BtnAccept();
     });
-    it('log out fail ', async () => {
-        await Logout.clickAvt();
-        await expect(Logout.titleVerifyAvt).toHaveText(Titleinputnameavt);
-        await Logout.btnLogOut();
-        await expect(Logout.logOut).not.toBeDisabled();
-        await expect(Logout.titleVerifyLogout).toBeExisting();
-        await Logout.cancelLogout();
+    it('should open personal profile after click avt ', async () => {
+        await Logout.ClickAvt();
+        await expect(Logout.TitleVerifyAvt).toHaveText(VALID_SUCCESSFUL.nameprofile);
     });
-    it('log out close ', async () => {
-        await Logout.clickAvt();
-        await expect(Logout.titleVerifyAvt).toHaveText(Titleinputnameavt);
-        await Logout.btnLogOut();
-        await expect(Logout.titleVerifyLogout).toBeExisting();
-        await Logout.close();
+    it('should click button logout ', async () => {
+        await Logout.BtnLogOut();
+        await expect(Logout.LogOut).not.toBeDisabled();
     });
-    it('log out true ', async () => {
-        await Logout.clickAvt();
-        await expect(Logout.titleVerifyAvt).toHaveText(Titleinputnameavt);
-        await Logout.btnLogOut();
-        await Logout.btnLogOutOk();
+    it('should click button cancel ', async () => {
+        await expect(Logout.LogOutCancel).not.toBeDisabled();
+        await Logout.CancelLogout();
+    });
+    it('should click avt close ', async () => {
+        await Logout.ClickAvt();
+        await expect(Logout.TitleVerifyAvt).toHaveText(VALID_SUCCESSFUL.nameprofile);
+        await Logout.BtnLogOut();
+        await expect(Logout.TitleVerifyLogout).toBeExisting();
+    });
+    it('should click button close ', async () => {
+        await expect(Logout.LogOutClose).not.toBeDisabled();
+        await Logout.Close();
+    });
+    it('should click button logout successful ', async () => {
+        await Logout.ClickAvt();
+        await expect(Logout.TitleVerifyAvt).toHaveText(VALID_SUCCESSFUL.nameprofile);
+        await Logout.BtnLogOut();
+        await Logout.BtnLogOutOk();
     });
 });
