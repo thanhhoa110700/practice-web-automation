@@ -1,74 +1,74 @@
 import Page from '../page';
 
 class Anonymous extends Page {
-    get BtnStartLoginAnonymous() {
+    get btnStartLoginAnonymous() {
         return $('#platforms-halome');
     }
-    get InputPhoneNumber() {
+    get inputPhoneNumber() {
         return $('#phone-login-form-input-phone');
     }
-    get BtnStart() {
+    get btnStart() {
         return $('#phone-login-form-button-ok');
     }
-    get InputOtp() {
+    get inputOtp() {
         return $('#phone-verify-form-input-1');
     }
-    get BtnBack() {
+    get btnBack() {
         return $('#auth-wrapper-go-back');
     }
-    get BtnSms() {
+    get btnSms() {
         return $('#phone-verify-form-button-request-sms');
     }
-    get BtnAvt() {
+    get btnAvt() {
         return $('#auth-user-profile-button');
     }
-    get LogOut() {
+    get logOut() {
         return $('[data-id="auth-user-content-button-logout"]');
     }
-    get LogOutOK() {
+    get logOutOK() {
         return $('#modal-button-ok');
     }
-    get TitleVerifyLogin() {
+    get titleVerifyLogin() {
         return $('#auth-wrapper-title');
     }
-    get FirstTime() {
+    get firstTime() {
         return $('#phone-login-form-input');
     }
-    get Continue() {
+    get continue() {
         return $('#phone-login-form-button-ok');
     }
-    async BtnContinue() {
-        return this.Continue.click();
+    async btnContinue() {
+        return this.continue.click();
     }
-    async EnterNameOne(name: string) {
-        return this.FirstTime.setValue(name);
+    async enterNameOne(name: string) {
+        return this.firstTime.setValue(name);
     }
-    async BtnLogOutOk() {
-        return this.LogOutOK.click();
+    async btnLogOutOk() {
+        return this.logOutOK.click();
     }
-    async BtnLogOut() {
-        return this.LogOut.click();
+    async btnLogOut() {
+        return this.logOut.click();
     }
-    async BtnAvartar() {
-        return this.BtnAvt.click();
+    async btnAvartar() {
+        return this.btnAvt.click();
     }
-    async SendTo() {
-        return this.BtnSms.click();
+    async sendTo() {
+        return this.btnSms.click();
     }
-    async StartAnonymous() {
-        return this.BtnStartLoginAnonymous.click();
+    async startAnonymous() {
+        return this.btnStartLoginAnonymous.click();
     }
-    async EnterPhoneNumber(phone: string) {
-        return this.InputPhoneNumber.setValue(phone);
+    async enterPhoneNumber(phone: string) {
+        return this.inputPhoneNumber.setValue(phone);
     }
-    async StartLogin() {
-        return this.BtnStart.click();
+    async startLogin() {
+        return this.btnStart.click();
     }
-    async EnterOtp(otp: string) {
-        return this.InputOtp.setValue(otp);
+    async enterOtp(otp: string) {
+        return this.inputOtp.setValue(otp);
     }
-    async ComeBack() {
-        return this.BtnBack.click();
+    async comeBack() {
+        return this.btnBack.click();
     }
 }
 

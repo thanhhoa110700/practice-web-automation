@@ -1,45 +1,67 @@
+import { INVALID_FAIL, VALID_OTP, VALID_SUCCESSFUL } from '../../data/login/forgot';
 import Forgotpin from '../../pageobjects/login/forgotpin';
 
-const VALID_ID = 'halome106@skyoi.tk';
-const VALID_PW = 'admin@123';
-const VALID_OTP_FAIL = '111111';
-const VALID_VERIFICATION = '000000';
-
 describe('TEST ANONYMOUS LOGIN FLOWS', async () => {
-    it('should disable login button', async () => {
+    before(async () => {
         await Forgotpin.open('https://sb.halome.dev/welcome');
-        await expect(Forgotpin.btnStartLoginHalo).not.toBeDisabled();
+        browser.maximizeWindow();
         await Forgotpin.startLoginHalo();
-    });
-    it('should enabled login button start', async () => {
-        await expect(Forgotpin.btnLogin).toBeEnabled();
-        await Forgotpin.Login();
-    });
-    it('should login account pwd true', async () => {
-        await Forgotpin.InputIdAccount(VALID_ID);
-        await Forgotpin.InputPwd(VALID_PW);
-        await expect(Forgotpin.btnLogin).not.toBeDisabled();
-        await Forgotpin.Login();
-    });
-    it('should process to verification fail', async () => {
+        await Forgotpin.inputIdAccount(VALID_SUCCESSFUL.id);
+        await Forgotpin.inputPwd(VALID_SUCCESSFUL.pass);
+        await Forgotpin.login();
         await Forgotpin.btnContinue();
-        await Forgotpin.enterOtp(VALID_OTP_FAIL);
-        await expect(Forgotpin.acceptLogin).not.toBeDisabled();
-        await Forgotpin.btnAccept();
-        await expect(Forgotpin.titleVerifyLogin).toBeExisting();
     });
-    it('should process to verification forgot cancel', async () => {
-        await Forgotpin.btnForgotPin();
-        await Forgotpin.enterOtp(VALID_VERIFICATION);
-        await expect(Forgotpin.acceptLogin).not.toBeDisabled();
+    it('should disable accept button', async () => {
         await Forgotpin.btnAccept();
-        await expect(Forgotpin.titleVerifyLogin).toBeExisting();
+        await expect(Forgotpin.acceptLogin).toBeDisabled();
     });
-    it('should process to verification forgot', async () => {
-        await Forgotpin.btnForgotPin();
-        await Forgotpin.enterOtp(VALID_VERIFICATION);
-        await expect(Forgotpin.acceptLogin).not.toBeDisabled();
+    it('should enabled accept open err show ', async () => {
+        await Forgotpin.enterOtpVerify(VALID_OTP.otpfail);
         await Forgotpin.btnAccept();
+        await expect(Forgotpin.titleVerifyErr).toBeExisting();
+    });
+    it('should enabled enter forgot ', async () => {
+        await expect(Forgotpin.forgotPin).not.toBeDisabled();
+        await Forgotpin.btnForgotPin();
+    });
+    it('should disabled button accept verification fail ', async () => {
+        await expect(Forgotpin.acceptVerification).toBeDisabled();
+        await Forgotpin.enterOtp(VALID_OTP.otpfail);
+        await expect(Forgotpin.titleVerifyLogin).toBeExisting();
+        await Forgotpin.btnAcceptVerification();
+    });
+    it('should disabled button accept verification alphabet ', async () => {
+        await expect(Forgotpin.acceptVerification).toBeDisabled();
+        await Forgotpin.enterOtp(INVALID_FAIL.alphabet);
+        await expect(Forgotpin.titleVerifyLogin).toBeExisting();
+        await Forgotpin.btnAcceptVerification();
+    });
+    it('should disabled button accept verification character ', async () => {
+        await expect(Forgotpin.acceptVerification).toBeDisabled();
+        await Forgotpin.enterOtp(INVALID_FAIL.character);
+        await expect(Forgotpin.titleVerifyLogin).toBeExisting();
+        await Forgotpin.btnAcceptVerification();
+    });
+    it('should disabled button accept verification lengthnumber ', async () => {
+        await expect(Forgotpin.acceptVerification).toBeDisabled();
+        await Forgotpin.enterOtp(INVALID_FAIL.lengthnumber);
+        await expect(Forgotpin.titleVerifyLogin).toBeExisting();
+        await Forgotpin.btnAcceptVerification();
+    });
+    it('should disabled button accept verification null ', async () => {
+        await expect(Forgotpin.acceptVerification).toBeDisabled();
+        await Forgotpin.enterOtp(INVALID_FAIL.null);
+        await expect(Forgotpin.titleVerifyLogin).toBeExisting();
+        await Forgotpin.btnAcceptVerification();
+    });
+    it('should disabled button accept verification space ', async () => {
+        await expect(Forgotpin.acceptVerification).toBeDisabled();
+        await Forgotpin.enterOtp(INVALID_FAIL.space);
+        await expect(Forgotpin.titleVerifyLogin).toBeExisting();
+        await Forgotpin.btnAcceptVerification();
+    });
+    it('should disabled button accept verification ok ', async () => {
+        await Forgotpin.enterOtp(VALID_OTP.otp);
         await expect(Forgotpin.titleVerifyLogin).toBeExisting();
     });
 });

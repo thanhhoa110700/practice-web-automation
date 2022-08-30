@@ -1,6 +1,6 @@
 import Page from '../page';
 
-class Hahalolo extends Page {
+class Resetpin extends Page {
     get btnStartLoginHalo() {
         return $('#platforms-halo');
     }
@@ -16,17 +16,8 @@ class Hahalolo extends Page {
     get continue() {
         return $('#halo-login-form-button-ok');
     }
-    get inputOtp() {
-        return $('#phone-verify-form-input-1');
-    }
-    get inputOtp2() {
-        return $('#otp-form-set-pin-input-2-1');
-    }
     get acceptLogin() {
-        return $('#otp-form-need-button-ok');
-    }
-    get titleVerifyLogin() {
-        return $('#auth-wrapper-title');
+        return $('#otp-form-otp-button-ok');
     }
     get forgotPin() {
         return $('#otp-form-need-button-forgot');
@@ -34,14 +25,29 @@ class Hahalolo extends Page {
     get btnSave() {
         return $('#otp-form-set-button-ok');
     }
-    async Save() {
-        return this.btnSave.click();
+    get inputOtp() {
+        return $('#otp-form-input-1');
     }
-    async btnForgotPin() {
-        return this.forgotPin.click();
+    get inputRetypeOtp() {
+        return $('#otp-form-set-pin-input-1-1');
+    }
+    get titleVerifyLogin() {
+        return $('#auth-wrapper-title');
+    }
+    get titleVerifyErr() {
+        return $('#otp-form-need-error');
+    }
+    get btnCancel() {
+        return $('#otp-form-otp-button-cancel');
+    }
+    async cickCancel() {
+        return this.btnCancel.click();
     }
     async startLoginHalo() {
         return this.btnStartLoginHalo.click();
+    }
+    async enterRetype(retype: string) {
+        return this.inputRetypeOtp.setValue(retype);
     }
     async inputIdAccount(id: string) {
         return this.inputId.setValue(id);
@@ -55,15 +61,18 @@ class Hahalolo extends Page {
     async btnContinue() {
         return this.continue.click();
     }
+    async Save() {
+        return this.btnSave.click();
+    }
+    async btnForgotPin() {
+        return this.forgotPin.click();
+    }
     async btnAccept() {
         return this.acceptLogin.click();
     }
     async enterOtp(otp: string) {
+        await this.inputOtp.waitForDisplayed({ timeout: 10000 });
         return this.inputOtp.setValue(otp);
     }
-    async otptwo(otptwo: string) {
-        return this.inputOtp2.setValue(otptwo);
-    }
 }
-
-export default new Hahalolo();
+export default new Resetpin();

@@ -4,20 +4,23 @@ class Forgotpin extends Page {
     get btnStartLoginHalo() {
         return $('#platforms-halo');
     }
-    get InputId() {
+    get inputId() {
         return $('#accountId');
     }
-    get InputPass() {
+    get inputPass() {
         return $('#password');
     }
     get btnLogin() {
         return $('[type="submit"]');
     }
-    get Continue() {
+    get continue() {
         return $('#halo-login-form-button-ok');
     }
     get acceptLogin() {
         return $('#otp-form-need-button-ok');
+    }
+    get acceptVerification() {
+        return $('#otp-form-otp-button-ok');
     }
     get forgotPin() {
         return $('#otp-form-need-button-forgot');
@@ -26,10 +29,16 @@ class Forgotpin extends Page {
         return $('#otp-form-set-button-ok');
     }
     get inputOtp() {
+        return $('#otp-form-input-1');
+    }
+    get inputOtpVerify() {
         return $('#phone-verify-form-input-1');
     }
     get titleVerifyLogin() {
         return $('#auth-wrapper-title');
+    }
+    get titleVerifyErr() {
+        return $('#otp-form-need-error');
     }
     get btnCancel() {
         return $('#otp-form-otp-button-cancel');
@@ -40,17 +49,17 @@ class Forgotpin extends Page {
     async startLoginHalo() {
         return this.btnStartLoginHalo.click();
     }
-    async InputIdAccount(id: string) {
-        return this.InputId.setValue(id);
+    async inputIdAccount(id: string) {
+        return this.inputId.setValue(id);
     }
-    async InputPwd(pw: string) {
-        return this.InputPass.setValue(pw);
+    async inputPwd(pw: string) {
+        return this.inputPass.setValue(pw);
     }
-    async Login() {
+    async login() {
         return this.btnLogin.click();
     }
     async btnContinue() {
-        return this.Continue.click();
+        return this.continue.click();
     }
     async save() {
         return this.btnSave.click();
@@ -61,8 +70,14 @@ class Forgotpin extends Page {
     async btnAccept() {
         return this.acceptLogin.click();
     }
+    async btnAcceptVerification() {
+        return this.acceptVerification.click();
+    }
     async enterOtp(otp: string) {
         return this.inputOtp.setValue(otp);
+    }
+    async enterOtpVerify(otp: string) {
+        return this.inputOtpVerify.setValue(otp);
     }
 }
 export default new Forgotpin();

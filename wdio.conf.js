@@ -1,5 +1,5 @@
 exports.config = {
-    specs: ['./test/specs/login/*'],
+    specs: ['./test/specs/login/resetpin.e2e.ts'],
     exclude: [],
     maxInstances: 10,
     capabilities: [

@@ -4,41 +4,42 @@ import Logout from '../../pageobjects/login/logout';
 describe('TEST LOG OUT SUCCESSFUL', async () => {
     before(async () => {
         await Logout.open('https://sb.halome.dev/welcome');
-        await expect(Logout.BtnStartLoginHalo).not.toBeDisabled();
-        await Logout.StartLoginHalo();
-        await Logout.InputIdAccount(VALID_SUCCESSFUL.id);
-        await Logout.InputPwd(VALID_SUCCESSFUL.pass);
+        browser.maximizeWindow();
+        await expect(Logout.btnStartLoginHalo).not.toBeDisabled();
+        await Logout.startLoginHalo();
+        await Logout.inputIdAccount(VALID_SUCCESSFUL.id);
+        await Logout.inputPwd(VALID_SUCCESSFUL.pass);
         await Logout.Login();
-        await Logout.BtnContinue();
-        await Logout.EnterOtp(VALID_OTP.otp);
-        await Logout.BtnAccept();
+        await Logout.btnContinue();
+        await Logout.enterOtp(VALID_OTP.otp);
+        await Logout.btnAccept();
     });
     it('should open personal profile after click avt ', async () => {
-        await Logout.ClickAvt();
-        await expect(Logout.TitleVerifyAvt).toHaveText(VALID_SUCCESSFUL.nameprofile);
+        await Logout.clickAvt();
+        await expect(Logout.titleVerifyAvt).toHaveText(VALID_SUCCESSFUL.nameprofile);
     });
     it('should click button logout ', async () => {
-        await Logout.BtnLogOut();
-        await expect(Logout.LogOut).not.toBeDisabled();
+        await Logout.btnLogOut();
+        await expect(Logout.logOut).not.toBeDisabled();
     });
     it('should click button cancel ', async () => {
-        await expect(Logout.LogOutCancel).not.toBeDisabled();
-        await Logout.CancelLogout();
+        await expect(Logout.logOutCancel).not.toBeDisabled();
+        await Logout.cancelLogout();
     });
     it('should click avt close ', async () => {
-        await Logout.ClickAvt();
-        await expect(Logout.TitleVerifyAvt).toHaveText(VALID_SUCCESSFUL.nameprofile);
-        await Logout.BtnLogOut();
-        await expect(Logout.TitleVerifyLogout).toBeExisting();
+        await Logout.clickAvt();
+        await expect(Logout.titleVerifyAvt).toHaveText(VALID_SUCCESSFUL.nameprofile);
+        await Logout.btnLogOut();
+        await expect(Logout.titleVerifyLogout).toBeExisting();
     });
     it('should click button close ', async () => {
-        await expect(Logout.LogOutClose).not.toBeDisabled();
+        await expect(Logout.logOutClose).not.toBeDisabled();
         await Logout.Close();
     });
     it('should click button logout successful ', async () => {
-        await Logout.ClickAvt();
-        await expect(Logout.TitleVerifyAvt).toHaveText(VALID_SUCCESSFUL.nameprofile);
-        await Logout.BtnLogOut();
-        await Logout.BtnLogOutOk();
+        await Logout.clickAvt();
+        await expect(Logout.titleVerifyAvt).toHaveText(VALID_SUCCESSFUL.nameprofile);
+        await Logout.btnLogOut();
+        await Logout.btnLogOutOk();
     });
 });
