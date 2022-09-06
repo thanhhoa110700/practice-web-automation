@@ -1,7 +1,7 @@
 exports.config = {
-    specs: ['./test/specs/login/resetpin.e2e.ts'],
+    specs: ['./test/specs/profile/personal-profile.ts'],
     exclude: [],
-    maxInstances: 10,
+    maxInstances: 1,
     capabilities: [
         {
             browserName: 'chrome',
