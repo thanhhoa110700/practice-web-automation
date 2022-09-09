@@ -1,5 +1,5 @@
 exports.config = {
-    specs: ['./test/specs/profile/personal-profile.ts'],
+    specs: ['./test/specs/profile/anonymous-profile.ts'],
     exclude: [],
     maxInstances: 1,
     capabilities: [
